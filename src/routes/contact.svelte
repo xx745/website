@@ -9,6 +9,7 @@
   import Card from "../components/contact/card.svelte";
   import OpenGraph from "../components/open-graph.svelte";
   import SubmissionSuccess from "../components/submission-success.svelte";
+  import { onMount } from "svelte";
 
   const contactCards: ContactCard[] = [
     {
@@ -46,6 +47,7 @@
     "Question about Gitpod's Paid Plans",
     "Applying for Professional Open Source",
     "Applying for the Custom IDE Beta",
+    "Report a bug",
     studentUnlimitedSubject,
     "Other",
   ];
@@ -90,6 +92,18 @@
   let isEmailSent = false;
 
   $: isFormValid = Object.values(formData).every((field) => field.valid);
+
+  onMount(() => {
+    if(location.search === '?support') {
+      const inputs = [...document.querySelectorAll('input[type="radio"]')]
+      inputs.forEach((input: HTMLInputElement) => {
+        if (input.value === "Report a bug") {
+          formData.selectedSubject.value = "Report a bug"
+          input.checked = true;
+        }
+      })
+    }
+  })
 
   const handleSubmit = async () => {
     isFormDirty = true;
@@ -138,7 +152,7 @@
   };
 </script>
 
-<style>
+<style type="text/postcss">
   p {
     color: var(--dark-grey);
   }
@@ -152,6 +166,10 @@
   }
   fieldset li {
     margin: 0 1rem 0 0;
+  }
+
+  .cards.double {
+    @apply justify-between;
   }
 </style>
 
@@ -172,7 +190,11 @@
   {/each}
 </div>
 
-<section class="card shadow-xl mb-32 sm:mx-8" bind:this={sectionStart}>
+<section
+  class="card shadow-xl mb-32 sm:mx-8"
+  bind:this={sectionStart}
+  id="form"
+>
   {#if isEmailSent}
     <SubmissionSuccess
       title="Thank you for your message"

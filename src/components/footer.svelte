@@ -18,18 +18,24 @@
       icon: "/svg/brands/discourse.svg",
       trackingName: "discourse",
     },
+    {
+      href: "https://www.gitpod.io/chat",
+      alt: "Discord",
+      icon: "/svg/brands/discord.svg",
+      trackingName: "discord",
+    },
   ];
 </script>
 
 <style type="text/postcss">
   a {
     @apply text-dark-grey no-underline;
+  }
 
-    &:hover,
-    &:focus {
+  a:hover,
+  a:focus {
       @apply text-black;
     }
-  }
 
   footer {
     @media (min-width: 56.25rem) {
@@ -47,15 +53,13 @@
     }
   }
 
-  li {
-    &:first-child {
+  li:first-child {
       @apply font-semibold text-black;
     }
 
-    &:not(:last-of-type) {
+    li:not(:last-of-type) {
       @apply mb-macro;
     }
-  }
 
   .footer__bottom {
     @media (max-width: 340px) {
@@ -74,7 +78,7 @@
   }
 </style>
 
-<div class="pb-8 bg-gray-100 text-p-footer">
+<div class="pb-8 bg-gray-100 text-p-footer" data-id="footer">
   <footer
     class="footer py-large m-auto px-xx-small md:max-w-3xl md:py-small md:px-xx-small"
   >
@@ -100,7 +104,9 @@
                 context: "footer",
                 name: "status",
                 url: "https://www.gitpodstatus.com/",
-              })}>Status</a
+            })}
+            rel="noopener"
+          >Status</a
           >
         </li>
       </ul>
@@ -110,6 +116,7 @@
         <li><a href="/screencasts">Screencasts</a></li>
         <li><a href="/blog">Blog</a></li>
         <li><a href="/docs">Documentation</a></li>
+        <li><a href="/support">Support</a></li>
         <!-- <li><a href="/guides">Guides</a></li> -->
         <li>
           <a
@@ -180,6 +187,7 @@
         {#each socialLinks as link}
           <a
             href={link.href}
+            target="_blank"
             on:click={() =>
               window.analytics.track("social_opened", {
                 context: "footer-logo",
