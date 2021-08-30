@@ -1,11 +1,12 @@
 <script>
   import { onMount } from "svelte";
   import { fade } from "svelte/transition";
-  import { cubicIn, cubicOut, linear } from "svelte/easing";
+  import { cubicIn, linear } from "svelte/easing";
   import Workspace_1 from "./svgs/workspace-1.svelte";
   import Workspace_2 from "./svgs/workspace-2.svelte";
   import Workspace_3 from "./svgs/workspace-3.svelte";
   import Workspace_4 from "./svgs/workspace-4.svelte";
+  import { getPrefersReducedMotion } from "../utils/helpers";
 
   export let alt = "";
   export let iterations = 3;
@@ -54,6 +55,7 @@
   }
 
   onMount(() => {
+    if(getPrefersReducedMotion) return;
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
         observer.unobserve(wrapper);
