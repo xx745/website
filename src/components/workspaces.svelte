@@ -55,7 +55,10 @@
   }
 
   onMount(() => {
-    if(getPrefersReducedMotion) return;
+    if(getPrefersReducedMotion()) {
+      items = available.filter(a => a.id !== '2')
+      return;
+    }
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
         observer.unobserve(wrapper);
