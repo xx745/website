@@ -3,6 +3,7 @@
 </script>
 
 <script lang="ts">
+  // @ts-nocheck
   import { stringToBeautifiedFragment } from "../utils/helper";
 
   import CareerModal from "../components/careers/modal.svelte";
@@ -109,7 +110,7 @@
   class="heroImage"
 />
 
-<Section className="careers-section">
+<Section class="careers-section">
   <div class="content-container">
     <article class="hilited">
       <h2 class="h4">

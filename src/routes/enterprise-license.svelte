@@ -8,7 +8,7 @@
   import type { Email } from "../functions/submit-form";
 
   let orderTotal = 0;
-  let sectionStart;
+  let sectionStart: HTMLElement;
 
   const yearlyPricesPerSeat = {
     eur: 216,
@@ -83,8 +83,8 @@
 
   $: isFormValid = Object.values(formData).every((field) => field.valid);
 
-  const handleSeatsInput = (e) => {
-    const input = e.target.value;
+  const handleSeatsInput = (e: Event) => {
+    const input = (<HTMLInputElement>e.target).value;
     if (input == "") {
       orderTotal = 0;
     } else {
