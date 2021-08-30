@@ -18,3 +18,13 @@ export const showHideOverflowY = (bool: boolean) => {
     html.classList.remove("overflow-y-hidden");
   }
 };
+
+export const getPrefersReducedMotion = () => {
+  const QUERY = '(prefers-reduced-motion: no-preference)';
+  const mediaQueryList = window.matchMedia(QUERY);
+
+  const prefersReducedMotion = !mediaQueryList.matches;
+
+  return prefersReducedMotion;
+}
+

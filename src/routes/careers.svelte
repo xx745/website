@@ -3,7 +3,7 @@
 </script>
 
 <script lang="ts">
-  import { stringToBeautifiedFragment } from "../utils/helper";
+  import { stringToBeautifiedFragment } from "../utils/helpers";
 
   import CareerModal from "../components/careers/modal.svelte";
   import OpenGraph from "../components/open-graph.svelte";

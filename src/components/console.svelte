@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { getPrefersReducedMotion } from "../utils/helpers";
   import { onMount } from "svelte";
 
   export let source = "";
@@ -49,6 +50,7 @@
   }
 
   onMount(() => {
+    skipToEnd = getPrefersReducedMotion();
     let font_size;
     let line_height;
     let margins;
